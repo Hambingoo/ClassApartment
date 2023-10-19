@@ -1,6 +1,9 @@
-#pragma once
+п»ї#pragma once
 #include <iostream> 
 #include <string>
+#include <istream>
+#include <stdexcept>
+#include <vector>
 
 
 using namespace std;
@@ -12,8 +15,8 @@ class Kitchen
 public:
 	Kitchen()
 	{
-		floor = "Не указан";
-		ceil = "Не указан";
+		floor = "РќРµ СѓРєР°Р·Р°РЅ";
+		ceil = "РќРµ СѓРєР°Р·Р°РЅ";
 	}
 
 
@@ -24,7 +27,10 @@ public:
 	}
 
 
-	~Kitchen();
+	~Kitchen()
+	{
+
+	}
 
 	string Getfloor()
 	{
@@ -39,9 +45,9 @@ public:
 	void Create()
 	{
 		string floor, ceil;
-		cout << "Введите материал пола: ";
+		cout << "Р’РІРµРґРёС‚Рµ РјР°С‚РµСЂРёР°Р» РїРѕР»Р°: ";
 		cin >> floor;
-		cout << "Введите материал потолка: ";
+		cout << "Р’РІРµРґРёС‚Рµ РјР°С‚РµСЂРёР°Р» РїРѕС‚РѕР»РєР°: ";
 		cin >> ceil;
 		this->floor = floor;
 		this->ceil = ceil;
@@ -62,15 +68,15 @@ class Hall
 public:
 	Hall()
 	{
-		floor = "Не указан";
-		ceil = "Не указан";
+		floor = "РќРµ СѓРєР°Р·Р°РЅ";
+		ceil = "РќРµ СѓРєР°Р·Р°РЅ";
 		numOfPlaceForSleep = 0;
 	}
 
 
 	Hall(string floor, string ceil, int numOfplaceForSleep)
 	{
-		if (checkArgs)
+		if (checkArgs(numOfPlaceForSleep))
 		{
 			this->floor = floor;
 			this->ceil = ceil;
@@ -78,8 +84,11 @@ public:
 		}
 		
 	}
-	~Hall();
 
+	~Hall()
+	{
+
+	}
 
 	string Getfloor()
 	{
@@ -102,20 +111,20 @@ public:
 	{
 		string floor, ceil;
 		int numOfPlaceForSleep;
-		cout << "Введите материал пола: ";
+		cout << "Р’РІРµРґРёС‚Рµ РјР°С‚РµСЂРёР°Р» РїРѕР»Р°: ";
 		cin >> floor;
-		cout << "Введите материал потолка: ";
+		cout << "Р’РІРµРґРёС‚Рµ РјР°С‚РµСЂРёР°Р» РїРѕС‚РѕР»РєР°: ";
 		cin >> ceil;
-		cout << "Введите кол-во спальных мест: ";
+		cout << "Р’РІРµРґРёС‚Рµ РєРѕР»-РІРѕ СЃРїР°Р»СЊРЅС‹С… РјРµСЃС‚: ";
 		cin >> numOfPlaceForSleep;
 		while (getchar() != '\n');
-		if (checkArgs)
+		if (checkArgs(numOfPlaceForSleep))
 		{
 			this->floor = floor;
 			this->ceil = ceil;
 			this->numOfPlaceForSleep = numOfPlaceForSleep;
 		}
-		else throw invalid_argument("Вы ввели что-то неправильно!");
+		else throw invalid_argument("Р’С‹ РІРІРµР»Рё С‡С‚Рѕ-С‚Рѕ РЅРµРїСЂР°РІРёР»СЊРЅРѕ!");
 	}
 
 
@@ -137,10 +146,10 @@ class Bathroom
 public:
 	Bathroom()
 	{
-		floor = "Не указан";
-		ceil = "Не указан";
-		walltype = "Не указан";
-		washtype = "Не указан";
+		floor = "РќРµ СѓРєР°Р·Р°РЅ";
+		ceil = "РќРµ СѓРєР°Р·Р°РЅ";
+		walltype = "РќРµ СѓРєР°Р·Р°РЅ";
+		washtype = "РќРµ СѓРєР°Р·Р°РЅ";
 	}
 
 	Bathroom(string floor, string ceil, string walltype, string washtype)
@@ -151,9 +160,9 @@ public:
 		this->washtype = washtype;
 	}
 
-
 	~Bathroom()
 	{
+
 	}
 
 	string Getfloor()
@@ -180,37 +189,36 @@ public:
 	{
 		string floor, ceil;
 		int type;
-		cout << "Введите материал пола: ";
+		cout << "Р’РІРµРґРёС‚Рµ РјР°С‚РµСЂРёР°Р» РїРѕР»Р°: ";
 		cin >> floor;
-		cout << "Введите материал потолка: ";
+		cout << "Р’РІРµРґРёС‚Рµ РјР°С‚РµСЂРёР°Р» РїРѕС‚РѕР»РєР°: ";
 		cin >> ceil;
-		cout << "Введите тип стен(1 - Плитка, 2 - Стандартные): ";
+		cout << "Р’РІРµРґРёС‚Рµ С‚РёРї СЃС‚РµРЅ(1 - РџР»РёС‚РєР°, 2 - РЎС‚Р°РЅРґР°СЂС‚РЅС‹Рµ): ";
 		cin >> type;
 		switch (type)
 		{
 		case 1:
-			this->walltype = "Плитка";
+			this->walltype = "РџР»РёС‚РєР°";
 			break;
 		case 2:
-			this->walltype = "Плитка";
+			this->walltype = "РџР»РёС‚РєР°";
 			break;
 		default:
-			throw invalid_argument("Вы ввели что-то неправильно!");
+			throw invalid_argument("Р’С‹ РІРІРµР»Рё С‡С‚Рѕ-С‚Рѕ РЅРµРїСЂР°РІРёР»СЊРЅРѕ!");
 			break;
 		}
-		cout << "Введите средство для мытья(1 - Душ, 2 - Ванна): ";
+		cout << "Р’РІРµРґРёС‚Рµ СЃСЂРµРґСЃС‚РІРѕ РґР»СЏ РјС‹С‚СЊСЏ(1 - Р”СѓС€, 2 - Р’Р°РЅРЅР°): ";
 		cin >> type;
-		while (getchar() != '\n');
 		switch (type)
 		{
 		case 1:
-			this->washtype = "Душ";
+			this->washtype = "Р”СѓС€";
 			break;
 		case 2:
-			this->washtype = "Ванна";
+			this->washtype = "Р’Р°РЅРЅР°";
 			break;
 		default:
-			throw invalid_argument("Вы ввели что-то неправильно!");
+			throw invalid_argument("Р’С‹ РІРІРµР»Рё С‡С‚Рѕ-С‚Рѕ РЅРµРїСЂР°РІРёР»СЊРЅРѕ!");
 			break;
 		}
 
@@ -233,15 +241,15 @@ class SleepingRooms
 public:
 	SleepingRooms()
 	{
-		floor = "Не указан";
-		ceil = "Не указан";
+		floor = "РќРµ СѓРєР°Р·Р°РЅ";
+		ceil = "РќРµ СѓРєР°Р·Р°РЅ";
 		numOfPlaceForSleep = 0;
 	}
 
 
 	SleepingRooms(string floor, string ceil, int numOfplaceForSleep)
 	{
-		if (checkArgs)
+		if (checkArgs(numOfPlaceForSleep))
 		{
 			this->floor = floor;
 			this->ceil = ceil;
@@ -249,7 +257,10 @@ public:
 		}
 
 	}
-	~SleepingRooms();
+	~SleepingRooms()
+	{
+
+	}
 
 
 	string Getfloor()
@@ -273,20 +284,20 @@ public:
 	{
 		string floor, ceil;
 		int numOfPlaceForSleep;
-		cout << "Введите материал пола: ";
+		cout << "Р’РІРµРґРёС‚Рµ РјР°С‚РµСЂРёР°Р» РїРѕР»Р°: ";
 		cin >> floor;
-		cout << "Введите материал потолка: ";
+		cout << "Р’РІРµРґРёС‚Рµ РјР°С‚РµСЂРёР°Р» РїРѕС‚РѕР»РєР°: ";
 		cin >> ceil;
-		cout << "Введите кол-во спальных мест: ";
+		cout << "Р’РІРµРґРёС‚Рµ РєРѕР»-РІРѕ СЃРїР°Р»СЊРЅС‹С… РјРµСЃС‚: ";
 		cin >> numOfPlaceForSleep;
 		while (getchar() != '\n');
-		if (checkArgs)
+		if (checkArgs(numOfPlaceForSleep))
 		{
 			this->floor = floor;
 			this->ceil = ceil;
 			this->numOfPlaceForSleep = numOfPlaceForSleep;
 		}
-		else throw invalid_argument("Вы ввели что-то неправильно!");
+		else throw invalid_argument("Р’С‹ РІРІРµР»Рё С‡С‚Рѕ-С‚Рѕ РЅРµРїСЂР°РІРёР»СЊРЅРѕ!");
 	}
 
 
@@ -311,9 +322,9 @@ public:
 		hall = Hall();
 		bathroom = Bathroom();
 		sleepingrooms = SleepingRooms();
-		this->status = "Не указано";
+		this->status = "РќРµРёР·РІРµСЃС‚РЅРѕ";
 		this->square = 0;
-		this->street = "Не указано";
+		this->street = "РќРµ СѓРєР°Р·Р°РЅРѕ";
 		this->numOfRooms = 0;
 		this->floor = 0;
 		this->housenum = 0;
@@ -342,67 +353,74 @@ public:
 		string street,status;
 		int housenum, floor,numOfRooms,status1;
 		float square;
-		cout << "Введите улицу: ";
+		cout << "Р’РІРµРґРёС‚Рµ СѓР»РёС†Сѓ: ";
 		cin >> street;
-		cout << "Введите номер дома: ";
+		this->street = street;
+		cout << "Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РґРѕРјР°: ";
 		cin >> housenum;
+		
 		if (housenum < 1)
 		{
-			throw invalid_argument("Вы ввели что-то неправильно!");
+			throw invalid_argument("Р’С‹ РІРІРµР»Рё С‡С‚Рѕ-С‚Рѕ РЅРµРїСЂР°РІРёР»СЊРЅРѕ!");
 		}
-		cout << "Введите номер этажа: ";
+		this->housenum = housenum;
+		cout << "Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ СЌС‚Р°Р¶Р°: ";
 		cin >> floor;
 		if (housenum < 1)
 		{
-			throw invalid_argument("Вы ввели что-то неправильно!");
+			throw invalid_argument("Р’С‹ РІРІРµР»Рё С‡С‚Рѕ-С‚Рѕ РЅРµРїСЂР°РІРёР»СЊРЅРѕ!");
 		}
-		cout << "Введите площадь: ";
+		this->floor = floor;
+		cout << "Р’РІРµРґРёС‚Рµ РїР»РѕС‰Р°РґСЊ: ";
 		cin >> square;
 		if (square < 1)
 		{
-			throw invalid_argument("Вы ввели что-то неправильно!");
+			throw invalid_argument("Р’С‹ РІРІРµР»Рё С‡С‚Рѕ-С‚Рѕ РЅРµРїСЂР°РІРёР»СЊРЅРѕ!");
 		}
-		cout << "Введите кол-во комнат: ";
+		this->square = square;
+		cout << "Р’РІРµРґРёС‚Рµ РєРѕР»-РІРѕ РєРѕРјРЅР°С‚: ";
 		cin >> numOfRooms;
 		if (numOfRooms < 1)
 		{
-			throw invalid_argument("Вы ввели что-то неправильно!");
+			throw invalid_argument("Р’С‹ РІРІРµР»Рё С‡С‚Рѕ-С‚Рѕ РЅРµРїСЂР°РІРёР»СЊРЅРѕ!");
 		}
-		cout << "Введите статус(1 - Строится,2 - Готова): ";
+		this->numOfRooms = numOfRooms;
+		cout << "Р’РІРµРґРёС‚Рµ СЃС‚Р°С‚СѓСЃ(1 - РЎС‚СЂРѕРёС‚СЃСЏ,2 - Р“РѕС‚РѕРІР°): ";
 		cin >> status1;
-		while (getchar() != '\n');
 		switch (status1)
 		{
 		case 1:
-			status = "Строится";
+			this->status = "РЎС‚СЂРѕРёС‚СЃСЏ";
+			break;
 		case 2:
-			status = "Готова";
+			this->status = "Р“РѕС‚РѕРІР°";
+			break;
 		default:
-			throw invalid_argument("Вы ввели что-то неправильно!");
+			throw invalid_argument("Р’С‹ РІРІРµР»Рё С‡С‚Рѕ-С‚Рѕ РЅРµРїСЂР°РІРёР»СЊРЅРѕ!");
 			break;
 		}
-		cout << "\n\t\tВвод параметров кухни";
+		cout << "\n\t\tР’РІРѕРґ РїР°СЂР°РјРµС‚СЂРѕРІ РєСѓС…РЅРё"<<endl;
 		kitchen.Create();
-		cout << "\n\t\tВвод параметров зала";
+		cout << "\n\t\tР’РІРѕРґ РїР°СЂР°РјРµС‚СЂРѕРІ Р·Р°Р»Р°"<<endl;
 		hall.Create();
-		cout << "\n\t\tВвод параметров душа";
+		cout << "\n\t\tР’РІРѕРґ РїР°СЂР°РјРµС‚СЂРѕРІ РґСѓС€Р°"<<endl;
 		bathroom.Create();
-		cout << "\n\t\tВвод параметров спальных комнат";
+		cout << "\n\t\tР’РІРѕРґ РїР°СЂР°РјРµС‚СЂРѕРІ СЃРїР°Р»СЊРЅС‹С… РєРѕРјРЅР°С‚"<<endl;
 		sleepingrooms.Create();
 
 	}
 
 	void PrintInfo()
 	{
-		cout << "\tИнформация о квартире\n";
-		cout << "Статус: " << status << endl;
-		cout << "Улица " << street << ", дом " << housenum << ", этаж " << floor << endl;
-		cout << "Площадь: " << square <<endl<< "Кол-во комнат: " << numOfRooms << endl;
+		cout << "\tРРЅС„РѕСЂРјР°С†РёСЏ Рѕ РєРІР°СЂС‚РёСЂРµ\n";
+		cout << "РЎС‚Р°С‚СѓСЃ: " << status << endl;
+		cout << "РЈР»РёС†Р° " << street << ", РґРѕРј " << housenum << ", СЌС‚Р°Р¶ " << floor << endl;
+		cout << "РџР»РѕС‰Р°РґСЊ: " << square <<endl<< "РљРѕР»-РІРѕ РєРѕРјРЅР°С‚: " << numOfRooms << endl;
 
-		cout << "\t\tЗал" << endl << "Материал пола: " << this->hall.Getfloor() << endl << "Потолок: " << this->hall.Getfceil() << endl << "Кол-во спальных мест: " << this->hall.GetnumOfPlace() << endl;
-		cout << "\t\tКухня" << endl << "Материал пола: " << this->kitchen.Getfloor() << endl << "Потолок: " << this->kitchen.Getfceil() << endl;
-		cout << "\t\tВанная комнат" << endl << "Материал пола: " << this->bathroom.Getfloor() << endl << "Потолок: " << this->bathroom.Getfceil() << endl << "Обделка стен: " << this->bathroom.Getwalltype() << endl << "Приспособление для мытья: " << this->bathroom.Getfwashtype() << endl;
-		cout<<"\t\tСпальные комнаты"<<endl<< "Материал пола: " << this->sleepingrooms.Getfloor() << endl << "Потолок: " << this->sleepingrooms.Getfceil() << endl << "Кол-во спальных мест: " << this->sleepingrooms.GetnumOfPlace() << endl;
+		cout << "\t\tР—Р°Р»" << endl << "РњР°С‚РµСЂРёР°Р» РїРѕР»Р°: " << this->hall.Getfloor() << endl << "РџРѕС‚РѕР»РѕРє: " << this->hall.Getfceil() << endl << "РљРѕР»-РІРѕ СЃРїР°Р»СЊРЅС‹С… РјРµСЃС‚: " << this->hall.GetnumOfPlace() << endl;
+		cout << "\t\tРљСѓС…РЅСЏ" << endl << "РњР°С‚РµСЂРёР°Р» РїРѕР»Р°: " << this->kitchen.Getfloor() << endl << "РџРѕС‚РѕР»РѕРє: " << this->kitchen.Getfceil() << endl;
+		cout << "\t\tР’Р°РЅРЅР°СЏ РєРѕРјРЅР°С‚" << endl << "РњР°С‚РµСЂРёР°Р» РїРѕР»Р°: " << this->bathroom.Getfloor() << endl << "РџРѕС‚РѕР»РѕРє: " << this->bathroom.Getfceil() << endl << "РћР±РґРµР»РєР° СЃС‚РµРЅ: " << this->bathroom.Getwalltype() << endl << "РџСЂРёСЃРїРѕСЃРѕР±Р»РµРЅРёРµ РґР»СЏ РјС‹С‚СЊСЏ: " << this->bathroom.Getfwashtype() << endl;
+		cout<<"\t\tРЎРїР°Р»СЊРЅС‹Рµ РєРѕРјРЅР°С‚С‹"<<endl<< "РњР°С‚РµСЂРёР°Р» РїРѕР»Р°: " << this->sleepingrooms.Getfloor() << endl << "РџРѕС‚РѕР»РѕРє: " << this->sleepingrooms.Getfceil() << endl << "РљРѕР»-РІРѕ СЃРїР°Р»СЊРЅС‹С… РјРµСЃС‚: " << this->sleepingrooms.GetnumOfPlace() << endl;
 	}
 
 
