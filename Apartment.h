@@ -30,6 +30,7 @@ public:
 		this->numOfRooms = 0;
 		this->floor = 0;
 		this->housenum = 0;
+		apartmentCounter++;
 	}
 
 	Apartment(Kitchen kitchen, Hall hall, Bathroom bathroom, SleepingRooms sleepingrooms, string status, float square, string street, int numOfRooms, int floor, int housenum)
@@ -44,10 +45,17 @@ public:
 		this->numOfRooms = numOfRooms;
 		this->floor = floor;
 		this->housenum = housenum;
+		apartmentCounter++;
 	}
 
 	~Apartment()
 	{
+		apartmentCounter--;
+	}
+
+	static int printApartmentCounter()
+	{
+		return apartmentCounter;
 	}
 
 	void Create()
@@ -136,4 +144,5 @@ private:
 	Hall hall;
 	Bathroom bathroom;
 	SleepingRooms sleepingrooms;
+	static int apartmentCounter;
 };
