@@ -16,5 +16,5 @@ int main()
 	dom[1] = new Apartment();
 	dom[1]->PrintInfo();
 	for (size_t i = 0; i < 2; i++)delete dom[i];
-	int i;
+
 }
