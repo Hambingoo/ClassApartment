@@ -58,6 +58,17 @@ public:
 		return apartmentCounter;
 	}
 
+	float getSquareWithPointer(float* result)
+	{
+		*result = this->square;
+		return *result;
+	}
+
+	float& getSquareWithReference()
+	{
+		return square;
+	}
+
 	void Create()
 	{
 		string street,status;
