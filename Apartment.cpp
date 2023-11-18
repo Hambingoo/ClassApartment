@@ -9,7 +9,7 @@ int main()
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
-
+	int jk;
 
 	Apartment* dom[2];
 	dom[0] = new Apartment();
