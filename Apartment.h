@@ -18,6 +18,38 @@ using namespace std;
 class Apartment
 {
 public:
+
+
+	Apartment operator +(float value)const
+	{
+		Apartment temp;
+		temp.status = this->status;
+		temp.square = this->square + value;
+		temp.street = this->street;
+		temp.numOfRooms = this->numOfRooms;
+		temp.floor = this->floor;
+		temp.housenum = this->housenum;
+		temp.kitchen = this->kitchen;
+		temp.hall = this->hall;
+		temp.bathroom = this->bathroom;
+		temp.sleepingrooms = this->sleepingrooms;
+		return temp;
+	}
+
+	Apartment operator ++(int)
+	{
+		Apartment temp(*this);
+		numOfRooms++;
+		apartmentCounter++;
+		return temp;
+	}
+
+	Apartment& operator++()
+	{
+		++numOfRooms;
+		return *this;
+	}
+
 	Apartment()
 	{
 		kitchen = Kitchen();
@@ -69,8 +101,19 @@ public:
 		return square;
 	}
 
+	float getSquare()
+	{
+		return square;
+	}
+
+	float getNumOfRooms()
+	{
+		return numOfRooms;
+	}
+
 	void Create()
 	{
+		cout << endl << endl << "\t\tСоздание новой квартиры" << endl;
 		string street,status;
 		int housenum, floor,numOfRooms,status1;
 		float square;
@@ -133,7 +176,7 @@ public:
 
 	void PrintInfo()
 	{
-		cout << "\tИнформация о квартире\n";
+		cout <<endl<<endl<< "\tИнформация о квартире\n";
 		cout << "Статус: " << status << endl;
 		cout << "Улица " << street << ", дом " << housenum << ", этаж " << floor << endl;
 		cout << "Площадь: " << square <<endl<< "Кол-во комнат: " << numOfRooms << endl;

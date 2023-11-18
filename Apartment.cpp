@@ -11,21 +11,36 @@ int main()
 
 
 
-	Apartment* dom[2];
-	dom[0] = new Apartment();
-	dom[0]->Create();
-	dom[0]->PrintInfo();
-	dom[1] = new Apartment();
-	dom[1]->PrintInfo();
+
+
+
+	Apartment flat,house;
+	flat.Create();
+	flat.PrintInfo();
+	
+
+	cout <<endl<<endl<< "Площадь квартиры до применения оператора перегрузки '+': " << flat.getSquare();
+	flat = flat + 3.5;
+	cout << endl << "Площадь после: " << flat.getSquare();
+
+
+
+	cout << endl << endl << "Тест перегрузки '++'(Постфикс): " << endl;
+	house = flat++;
+	cout << "Кол-во комнат в новой квартире: " << house.getNumOfRooms();
+	cout << endl << "Кол-во комнат в старой: " << flat.getNumOfRooms();
+
+	cout << endl << endl << "Тест перегрузки '++'(Префикс): " << endl;
+	house = ++flat;
+	cout << "Кол-во комнат в новой квартире: " << house.getNumOfRooms();
+	cout << endl << "Кол-во комнат в старой: " << flat.getNumOfRooms();
 
 	float square;
-	float squareWithPointer = dom[0]->getSquareWithPointer(&square);
-	cout << endl << endl << "Возвращение через указатель: " << squareWithPointer << endl;
-	float& squareWithReference = dom[0]->getSquareWithReference();
-	cout << "Возвращение через ссылку: " << squareWithReference << endl;
+	float squareWithPointer = flat.getSquareWithPointer(&square);
+	cout << endl << endl << "Возвращение площади первой квартиры через указатель: " << squareWithPointer << endl;
+	float& squareWithReference = flat.getSquareWithReference();
+	cout << "Возвращение площади первой квартиры через ссылку: " << squareWithReference << endl;
 
 	cout << endl << endl << "\t\tДемонстрация статического метода и переменной" << endl;
-	cout << "Кол-во квартир: " << Apartment::printApartmentCounter() << endl;
-	for (size_t i = 0; i < 2; i++)delete dom[i];
 	cout << "Кол-во квартир: " << Apartment::printApartmentCounter() << endl;
 }
